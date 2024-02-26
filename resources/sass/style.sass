@@ -1,0 +1,1992 @@
+@import slick
+
+=filter($filter_mode)
+    -webkit-filter: $filter_mode
+    -moz-filter: $filter_mode
+    -ms-filter: $filter_mode
+    -o-filter: $filter_mode
+    filter: $filter_mode
+
+=text-stroke-width($tstrokewidth)
+    -webkit-text-stroke-width: $tstrokewidth
+    -moz-text-stroke-width: $tstrokewidth
+    -ms-text-stroke-width: $tstrokewidth
+    -o-text-stroke-width: $tstrokewidth
+
+=text-stroke-color($tstrokecolor)
+    -webkit-text-stroke-color: $tstrokecolor
+    -moz-text-stroke-color: $tstrokecolor
+    -ms-text-stroke-color: $tstrokecolor
+    -o-text-stroke-color: $tstrokecolor
+
+=box-sizing($box)
+    -webkit-box-sizing: $box
+    -moz-box-sizing: $box
+    -ms-box-sizing: $box
+    -o-box-sizing: $box
+    webkit-box-sizing: $box
+
+=border-radius($round)
+    -webkit-border-radius: $round
+    -moz-border-radius: $round
+    -ms-border-radius: $round
+    border-radius: $round
+
+=transform($trans)
+    -webkit-transform: $trans
+    -moz-transform: $trans
+    -ms-transform: $trans
+    transform: $trans
+
+=transition($smooth)
+    -webkit-transition: $smooth
+    -moz-transition: $smooth
+    -o-transition: $smooth
+    transition: $smooth
+
+=appearance($appr)
+    -webkit-appearance: $appr
+    -moz-appearance: $appr
+    -o-appearance: $appr
+    appearance: $appr
+
+=box-shadow($bbs)
+    -webkit-box-shadow: $bbs
+    -moz-box-shadow: $bbs
+    -o-box-shadow: $bbs
+    box-shadow: $bbs
+
+=text-shadow($tbbs)
+    -webkit-text-shadow: $tbbs
+    -moz-text-shadow: $tbbs
+    -o-text-shadow: $tbbs
+    text-shadow: $tbbs
+
+$blue-light: #343794
+$blue: #1B1E77
+$red: #EC283D
+$white: #ffff
+$blue-shade: #787BE4
+$color-paragraph: #DAACAE
+$border-color: #DBDBDB
+$input-text: #C6C6C6
+$red-shade: #d42437
+$input-extra: #D9D9D9
+$new-border: #4B4B4B
+$home-page-border: #959595
+$black: #000
+$grey: #6e6e6e
+
+
+$font_Poppins: 'Poppins', sans-serif
+
+*
+    +box-sizing(border-box)
+
+html
+    -webkit-text-size-adjust: 100%
+
+div, h1, h2, h3, h4, h5, p, ol, form, input, textarea, img, html, applet, object, iframe, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+    margin: 0
+    padding: 0
+    border: 0
+    font-size: 100%
+    vertical-align: baseline
+
+body
+    margin: 0
+    padding: 0
+    font-family: $font_Poppins
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
+    display: block
+
+img
+    max-width: 100%
+    height: auto
+    border: none
+    outline: none
+    display: block
+
+blockquote, q
+    quotes: none
+
+ul
+    margin: 0
+    padding: 0
+    list-style-type: none
+    li
+        padding: 0
+        margin: 0
+
+h2
+    background: transparent
+    padding: 0
+    margin: 0 0 30px
+    font-size: 50px
+    line-height: 1
+    font-weight: 700
+    color: $white
+    strong
+        color: $white
+        font-weight: 700
+h3
+    background-color: inherit
+    padding: 0
+    margin: 0 0 5px
+    font-size: 18px
+    font-weight: 600
+    color: $white
+
+h1, h2, h3, h4
+    font-family: $font_Poppins
+
+a
+
+    background-color: transparent
+    outline: none
+    text-decoration: none
+    color: $white
+    &:hover
+        background-color: transparent
+        text-decoration: none
+        color: $white
+
+    &:active, &:focus
+        text-decoration: none
+
+p
+    color: $color-paragraph
+    font-size: 40px
+    font-weight: 400
+
+.btn
+    min-width: 150px
+    background: $white
+    color: $white
+    border: 1px solid $white
+    padding: 18px
+    border-radius: 0 !important
+    &:hover
+        background: transparent
+        border: 1px solid $red
+        color: $red
+        +transition(0.3s ease-out)
+    &:focus
+        box-shadow: none
+button
+    border: none
+.span-text
+    font-size: 18px
+    color: $blue !important
+    font-weight: 600
+
+.clear
+    &::after
+        content: ""
+        display: block
+        clear: both
+
+select
+    option
+        color: $blue
+
+// Scrool
+
+/* width */
+::-webkit-scrollbar
+    width: 2px
+    opacity: 0.5
+
+/* Track */
+::-webkit-scrollbar-track
+    background-color: $red
+    border-radius: 20px
+
+/* Handle */
+::-webkit-scrollbar-thumb
+    background-color: $red-shade
+    border-radius: 20px
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+    background: #555
+
+// Scrool
+
+// main
+
+.splash-screen
+    width: 100%
+    height: calc(100vh - 51px)
+    position: relative
+    .main-wapper-img
+        background-color: $blue-light
+        height: calc(100vh - 51px)
+        .splash-slick-slider
+            .element
+                .fig-holder
+                    position: relative
+                    figure
+                        width: 100%
+                        height: 868px
+                        background-size: cover
+                        background-repeat: no-repeat
+                &.element-2
+                    .fig-holder
+                        margin: 0 auto
+                        figure
+                            width: 100%
+                            height: 600px
+                            background-size: cover
+
+        .fst-footer
+            background-color: $blue
+            padding: 15px 0
+            position: absolute
+            bottom: 0
+            width: 100%
+            p
+                color: $red
+                font-size: 14px
+                font-weight: 600
+                margin-left: 240px
+                a
+                    color: $blue-shade
+    .main-text
+        position: relative
+        background-color: $red
+        width: 100%
+        height: calc(100vh - 51px)
+        text-align: center
+        z-index: 1
+        .text-wapper
+            position: relative
+            height: 100vh
+            .text
+                position: absolute
+                left: 50%
+                top: 50%
+                +transform(translate(-50% , -50%))
+                width: 100%
+                .arrow
+                    a
+                        display: inline-block
+                        &::after
+                            content: ""
+                            position: absolute
+                            width: 32px
+                            height: 32px
+                            background-image: url(../images/Icon-Forward.png)
+                            background-repeat: no-repeat
+                            right: 148px
+                            bottom: -100px
+            .sec-footer
+                background-color: $blue
+                padding: 15px 0
+                position: absolute
+                bottom: 0
+                width: 100%
+                p
+                    color: $red
+                    font-size: 14px
+                    font-weight: 600
+                    margin-left: 300px
+                    a
+                        color: $blue-shade
+
+.camping
+    width: 100%
+    height: 100vh
+    position: relative
+    .main-wapper-img
+        background-color: $red
+        height: 100vh
+        position: relative
+        .fig-holder
+            width: 567px
+            height: 390.43px
+            position: absolute
+            left: 50%
+            top: 50%
+            +transform(translate(-50% , -50%))
+            figure
+                width: 567px
+                height: 390.43px
+                background-size: cover
+                background-repeat: no-repeat
+                z-index: 2
+        .fst-footer
+            background-color: $blue
+            padding: 15px 0
+            position: absolute
+            bottom: 0
+            width: 100%
+            p
+                color: $red
+                font-size: 14px
+                font-weight: 600
+                margin-left: 240px
+                a
+                    color: $blue-shade
+    .main-text
+        position: relative
+        background-color: $blue-light
+        width: 100%
+        height: 100vh
+        text-align: center
+        z-index: 1
+        .text-wapper
+            position: relative
+            height: 100vh
+            .text
+                position: absolute
+                left: 50%
+                top: 50%
+                +transform(translate(-50% , -50%))
+                width: 100%
+                .arrow
+                    a
+                        display: inline-block
+                        &::after
+                            content: ""
+                            position: absolute
+                            width: 32px
+                            height: 32px
+                            background-image: url(../images/Icon-Forward.png)
+                            background-repeat: no-repeat
+                            right: 148px
+                            bottom: -100px
+            .sec-footer
+                background-color: $blue
+                padding: 15px 0
+                position: absolute
+                bottom: 0
+                width: 100%
+                p
+                    color: $red
+                    font-size: 14px
+                    font-weight: 600
+                    margin-left: 300px
+                    a
+                        color: $blue-shade
+
+.main-header-home-login
+    background-color: $white
+    padding: 30px 0
+    position: relative
+    .search-holder
+        position: relative
+        width: 72%
+        margin-left: 260px
+        input
+            border: 1px solid $border-color
+            outline: 0
+            border-radius: 24px
+            padding: 8px 20px
+            width: 460px
+            position: relative
+            &::placeholder
+                font-size: 14px
+                font-weight: 600
+                color: $input-text
+        button
+            background-color: transparent
+            background-image: url(../images/Icon-Search.svg)
+            width: 18px
+            height: 18px
+            position: absolute
+            background-repeat: no-repeat
+            right: 16px
+            top: 14px
+
+.home-login
+    &.main-page-start
+        height: calc( 100vh - 51px )
+        .wapper-form 
+            .error-message
+                bottom: 0
+                color: $red
+        .row
+            align-items: center
+        .home-page-logo-wapper
+            padding: 60px 0
+        .main-wapper
+            text-align: center
+            .logo-main
+                display: inline-block
+                width: 480px
+                height: 262px
+                text-align: center
+                margin-bottom: 50px
+                img
+                    display: block
+                    width: 100%
+                    height: auto
+            p
+                font-size: 24px
+                line-height: 36px
+                width: 90%
+                margin: 0 auto
+                color: $black
+            .login-form
+                background-color: $white
+                border-left: 1px solid $home-page-border
+                height: calc( 100vh - 51px )
+                .arrow 
+                    a
+                        &::after
+                            background-image: url(../images/Icon-Back-copy.svg)
+                .login-wapper 
+                    h2
+                        color: $red
+                    h5
+                        color: $blue
+                    &.scrool-extra 
+                        font-family: $font_Poppins
+                        span.dont-account
+                            color: $blue
+                            a
+                                color: $red
+                                +transition(0.3s)
+                                &:hover
+                                    color: $blue
+                        #sing-up-form 
+                            span.check-box
+                                color: $blue
+                            #sing-up-submit
+                                border-color: $home-page-border
+                                background-color: $red
+                                color: $white
+                                &:hover
+                                    color: $red
+                                    background-color: transparent
+                            .wapper-form 
+                                .error-message
+                                    color: $red
+                                #name-label 
+                                    border-color: $home-page-border
+                                    #name
+                                        color: $black
+                                    #phone-no
+                                        color: $black
+                                #password-label
+                                    border-color: $home-page-border
+                                    #name
+                                        color: $black
+                                select
+                                    border-color: $home-page-border
+                                    color: $blue
+                                    font-weight: 500
+                                #text-area
+                                    padding: 0 
+                                    textarea
+                                        color: $black
+
+                    .login-id 
+                        span.dont-account
+                            color: $blue
+                            a
+                                color: $red
+                    ul 
+                        li 
+                            a
+                                color: $new-border
+                                border-color: $new-border
+                    #password-form 
+                        .email-label-new
+                            color: $black
+                        .pass-input-new
+                            color: $black
+                        button.submit
+                            border-color: $home-page-border
+                            background-color: $red
+                            color: $white
+                            &:hover
+                                color: $red
+    .main-wapper
+        .fig-holder
+            width: 100%
+            height: calc(100vh - 196px)
+            figure
+                width: 100%
+                height: 100%
+                background-size: cover
+                background-repeat: no-repeat
+                background-position: center
+        .login-form
+            background-color: $red
+            width: 100%
+            height: calc(100vh - 196px)
+            position: relative
+            padding: 30px 0
+            overflow: hidden
+            &.domocrat-class
+                background-color: $blue
+            &.republican-class
+                background-color: $red
+            &.nonparty-class
+                background-color: $white
+                h2
+                    color: $blue
+                .login-wapper
+                    h5
+                        color: $blue
+                    ul
+                        li
+                            a
+                                color: $red
+                                &:hover
+                                    color: $blue
+                h3
+                    color: $red
+                a
+                    color: $red
+                    font-family: $font_Poppins
+                    margin-top: 15px
+                    display: inline-block
+                    +transition(0.3s)
+                    &:hover
+                        color: $blue
+                .arrow
+                    a
+                        &::after
+                            background-image: url(../images/Icon-Back-copy.svg)
+                .job-dtl 
+                    p
+                        color: $grey
+                    ul
+                        color: $grey
+                .login-wapper
+                    &.search-result-main 
+                        .manin-wapper 
+                            .text 
+                                .fst-sec 
+                                    p
+                                        color: $grey
+                                    ul
+                                        color: $grey
+                                        span
+                                            img
+                                                filter: grayscale(1)
+            .arrow
+                a
+                    &::after
+                        content: ""
+                        position: absolute
+                        width: 32px
+                        height: 22px
+                        left: 20px
+                        top: 20px
+                        background-image: url(../images/Icon-Back.svg)
+            .login-wapper
+                width: 70%
+                text-align: center
+                position: absolute
+                left: 50%
+                top: 50%
+                +transform(translate(-50% , -50%))
+                ul
+                    li
+                        margin-bottom: 20px
+                        a
+                            background-color: transparent
+                            padding: 15px 0
+                            display: block
+                            border: 1px solid $border-color
+                            border-radius: 50px
+                            color: $white
+                            font-size: 14px
+                            font-weight: 600
+                            text-transform: uppercase
+                            +transition(0.3s)
+                            &.extra-a
+                                display: inline-block
+                                padding: 5px 30px
+                                border: 0
+                                &:hover
+                                    background-color: transparent
+                                    color: $white
+                        &.active
+                            a
+                                background-color: $white
+                                color: $red
+                        &:hover
+                            a
+                                background-color: $white
+                                color: $red
+                h2
+                    font-size: 48px
+                    margin-bottom: 40px
+                    text-transform: uppercase
+                    padding-top: 40px
+                h5
+                    font-size: 24px
+                    margin-bottom: 30px
+                    text-transform: uppercase
+                    color: $white
+                    font-weight: 700
+                #password-form
+                    .email-label-new
+                        border: 1px solid $border-color
+                        padding: 15px 20px
+                        font-size: 14px
+                        font-weight: 600
+                        border-radius: 50px
+                        width: 100%
+                        margin-bottom: 20px
+                        outline: 0
+                        background-color: transparent
+                        color: $white
+                        &::placeholder
+                            font-size: 14px
+                            font-weight: 400
+                            color: $input-text
+                        #email
+                            outline: 0
+                            border: 0
+                            background-color: transparent
+                            width: 100%
+                            display: block
+                            color: $white
+                            &::placeholder
+                                font-size: 14px
+                                font-weight: 400
+                                color: $input-text
+                    .pass-input-new
+                        border: 1px solid $border-color
+                        padding: 15px 20px
+                        font-size: 14px
+                        font-weight: 600
+                        border-radius: 50px
+                        width: 100%
+                        background-color: transparent
+                        outline: 0
+                        color: $white
+                        margin-bottom: 30px
+                        &::placeholder
+                            font-size: 14px
+                            font-weight: 400
+                            color: $input-text
+                        #password
+                            outline: 0
+                            border: 0
+                            background-color: transparent
+                            width: 100%
+                            display: block
+                            color: $white
+                            &::placeholder
+                                font-size: 14px
+                                font-weight: 400
+                                color: $input-text
+                        &::after
+                            content: ""
+                            position: absolute
+                            background-image: url(../images/Icon-Hide-Password.svg)
+                            width: 18px
+                            height: 15.49px
+                            background-repeat: no-repeat
+                            right: 20px
+                            top: 50%
+                            +transform(translateY(-50%))
+                    span.forgot
+                        display: flex
+                        justify-content: end
+                        margin-top: 10px
+                        a
+                            font-size: 14px
+                            font-weight: 600
+                            color: $input-text
+                    button.submit
+                        width: 100%
+                        outline: 0
+                        border: 1px solid $white
+                        background-color: $white
+                        color: $red
+                        padding: 15px 0
+                        text-transform: uppercase
+                        font-size: 14px
+                        font-weight: 600
+                        border-radius: 50px
+                        +transition(0.3s)
+                        margin-top: 30px
+                        &.back-next
+                            padding: 9px 0
+                        &:hover
+                            background-color: transparent
+                            color: $white
+                span.or
+                    position: relative
+                    z-index: 2
+                    display: inline-block
+                    color: $input-text
+                    margin: 30px 0
+                    width: 100%
+                    text-align: center
+                    padding: 0 10px
+                    &::after
+                        content: ""
+                        position: absolute
+                        z-index: 1
+                        background-color: $input-text
+                        width: 45%
+                        height: 1px
+                        left: 0
+                        top: 50%
+                        +transform(translateY(-50%))
+                    &::before
+                        content: ""
+                        position: absolute
+                        z-index: 1
+                        background-color: $input-text
+                        width: 45%
+                        height: 1px
+                        right: 0
+                        top: 50%
+                        +transform(translateY(-50%))
+                .login-id
+                    ul.login-holder
+                        li
+                            a
+                                background-color: $red
+                                border: 1px solid $input-text
+                                display: block
+                                font-size: 14px
+                                font-weight: 600
+                                text-transform: uppercase
+                                padding: 15px 0
+                                border-radius: 50px
+                                position: relative
+                                color: $input-text
+                                +transition(0.3s)
+                                span
+                                    img
+                                        position: absolute
+                                        top: 50%
+                                        left: 20px
+                                        +transform(translateY(-50%))
+                                &:hover
+                                    background-color: $white
+                                    color: $red
+                    span.dont-account
+                        font-size: 12px
+                        font-weight: 600
+                        color: $white
+                        display: inline-block
+                        margin-top: 20px
+                        a
+                            color: $input-text
+            #otp-input
+                input
+                    width: 50px
+                    height: 50px
+                    border-radius: 100%
+                    background-color: $red
+                    border: 1px solid $input-text
+                    outline: 0
+                    padding: 20px
+                    color: $white
+                    font-size: 16px
+                    font-weight: 600
+                    margin-left: 10px
+                button.submit
+                    width: 100%
+                    outline: 0
+                    border: 1px solid white
+                    background-color: white
+                    color: $red
+                    padding: 15px 0
+                    text-transform: uppercase
+                    font-size: 14px
+                    font-weight: 600
+                    border-radius: 50px
+                    +transition(0.3s)
+                    margin-top: 30px
+                    &:hover
+                        background-color: transparent
+                        color: $white
+
+                // login Screen   
+        .login-wapper.scrool-extra
+            height: 74vh
+            overflow-y: scroll
+            overflow-x: hidden
+            padding: 0 30px
+            width: 70%
+            #sing-up-form
+                .wapper-form
+                    position: relative
+                    .error-message
+                        position: absolute
+                        left: 20px
+                        bottom: 10px
+                        font-size: 12px
+                        color: $white
+                    &.checkbox
+                        .error-message
+                            left: 28px
+                    #name-label
+                        border: 1px solid #DBDBDB
+                        padding: 10px 15px
+                        font-size: 14px
+                        font-weight: 600
+                        border-radius: 50px
+                        width: 100%
+                        margin-bottom: 30px
+                        #name , #phone-no
+                            background-color: transparent
+                            width: 100%
+                            outline: 0
+                            border: 0
+                            font-size: 14px
+                            font-weight: 400
+                            color: $white
+                            &::placeholder
+                                font-size: 14px
+                                color: $input-text
+                                font-weight: 400
+                    #password-label
+                        border: 1px solid #DBDBDB
+                        padding: 10px 15px
+                        font-size: 14px
+                        font-weight: 600
+                        border-radius: 50px
+                        width: 100%
+                        margin-bottom: 30px
+                        position: relative
+                        #name
+                            background-color: transparent
+                            width: 100%
+                            outline: 0
+                            border: 0
+                            font-size: 14px
+                            font-weight: 400
+                            color: $white
+                            &::placeholder
+                                font-size: 14px
+                                color: $input-text
+                                font-weight: 400
+                        &::after
+                            content: ""
+                            position: absolute
+                            background-image: url(../images/Icon-Hide-Password.svg)
+                            width: 18px
+                            height: 15.49px
+                            background-repeat: no-repeat
+                            right: 20px
+                            top: 50%
+                            transform: translateY(-50%)
+                    select
+                        border: 1px solid #DBDBDB
+                        padding: 10px 15px
+                        font-size: 14px
+                        font-weight: 600
+                        border-radius: 50px
+                        width: 100%
+                        background: none
+                        color: $white
+                        margin-bottom: 30px
+                        position: relative
+                        option
+                            color: $color-paragraph
+                #text-area
+                    width: 100%
+                    border-radius: 24px
+                    border: 1px solid $border-color                 
+                    textarea
+                        width: 100%
+                        height: 150px
+                        resize: none
+                        background-color: transparent
+                        outline: 0
+                        border: 0
+                        font-size: 14px
+                        color: $white
+                        &::placeholder
+                            font-size: 14px
+                            color: $input-text
+                            font-weight: 400
+                span.check-box
+                    font-size: 12px
+                    font-weight: 600
+                    color: $white
+                    display: flex
+                    align-items: center
+                    gap: 10px
+                    margin-top: 20px
+                    #checkbox
+                        width: 18px
+                        height: 18px
+                        border-radius: 4px
+                #sing-up-submit
+                    width: 100%
+                    outline: 0
+                    border: 1px solid $white
+                    background-color: $white
+                    text-transform: uppercase
+                    padding: 10px 0
+                    color: $red
+                    font-size: 14px
+                    font-weight: 600
+                    border-radius: 50px
+                    margin-top: 30px
+                    +transition(0.3s)
+                    &:hover
+                        background-color: transparent
+                        color: $white
+            span.dont-account
+                font-size: 12px
+                font-weight: 600
+                display: inline-block
+                margin-top: 20px
+                color: $white
+                a
+                    color: $input-text
+            .form-check-label
+                width: 100%
+                text-align: start
+                font-family: $font_Poppins
+                color: $white
+        // question-area
+        .login-wapper.question-area-main
+            width: 70%
+            height: 70vh
+            overflow-y: scroll
+            overflow-x: hidden
+            padding: 0 30px
+            text-align: left
+            #question-form
+                .question-area-wapper
+                    border-bottom: 1px solid $white
+                    padding: 20px 0
+                    label
+                        width: 100%
+                        color: $input-extra
+                        font-size: 14px
+                        margin-bottom: 10px
+                    textarea
+                        width: 100%
+                        border: 1px solid $color-paragraph
+                        border-radius: 50px
+                        background-color: transparent
+                        resize: none
+                        outline: 0
+                        padding: 0px 20px
+                        font-size: 14px
+                        color: $white
+                        min-height: 50px
+                        margin-bottom: 20px
+                .finish
+                    margin-top: 40px
+                    width: 100%
+                    background-color: $white
+                    color: $red
+                    text-transform: uppercase
+                    font-size: 14px
+                    font-weight: 600
+                    border: 1px solid $white
+                    outline: 0
+                    padding: 15px 0
+                    +transition(0.3s)
+                    border-radius: 50px
+                    &:hover
+                        background-color: transparent
+                        color: $white
+
+.home-login
+    .main-wapper
+        .login-form
+            .arrow
+                .edit
+                    content: ""
+                    position: absolute
+                    background-image: url(../images/Icon-Edit.svg)
+                    width: 40px
+                    height: 40px
+                    background-repeat: no-repeat
+                    top: 20px
+                    right: 20px
+                    cursor: pointer
+        .form-element
+            height: 75vh
+            overflow-y: scroll
+            overflow-x: hidden
+            padding: 0 30px
+            width: 70%
+            position: relative
+            .form-holder
+                .holder-input
+                    border: 1px solid $color-paragraph
+                    width: 100%
+                    padding: 14px 20px
+                    border-radius: 50px
+                    display: flex
+                    align-items: center
+                    margin-bottom: 30px
+                .profile-picture
+                    width: 170px
+                    height: 170px
+                    border-radius: 100%
+                    background-color: $white
+                    margin: 0 auto
+                    border: 7px solid $input-text
+                    overflow: hidden
+                    margin-bottom: 30px
+                    position: relative
+                    .remove-img
+                        width: 60px
+                        height: 60px
+                        background-color: $red-shade
+                        position: absolute
+                        right: 0
+                        top: 0
+                        z-index: 1
+                        left: 0
+                        bottom: 0
+                        margin: auto
+                        font-size: 44px
+                        line-height: 49px
+                        color: $white
+                        text-indent: -1
+                        opacity: 0
+                        +border-radius(50%)
+                        +transition(0.3s)
+                        +transform(scale(0,0))
+                        transform-origin: center
+                    &:hover
+                        .remove-img
+                            +transform(scale(1,1))
+                            opacity: 0.8
+                    #profile-picture-input
+                        width: 100%
+                        height: 100%
+                        opacity: 0
+                        position: relative
+                        z-index: 2
+                    figure
+                        width: 100%
+                        height: 100%
+                        background-size: cover
+                        background-repeat: no-repeat
+                        background-position: center
+                        position: relative
+                        z-index: 1
+                .upload_img_note
+                    width: auto
+                    display: block
+                    margin-top: -20px
+                    margin-bottom: 30px
+                    font-size: 12px
+                    text-transform: uppercase
+                    color: $white
+                label
+                    width: 14%
+                    font-size: 14px
+                    font-weight: 600
+                    color: $white
+                    text-transform: uppercase
+                input
+                    color: $input-extra
+                    font-size: 14px
+                    font-weight: 600
+                    background-color: transparent
+                    outline: 0
+                    width: 100%
+                    font-size: 14px
+                    font-weight: 600
+                    color: $white
+                    &::placeholder
+                        font-size: 14px
+                        font-weight: 600
+                        color: $color-paragraph
+                &.default_form
+                    .holder-input
+                        border: 0
+                        padding: 0
+                        display: block
+                        +border-radius(0)
+                        label
+                            width: 100%
+                            text-align: left
+                            margin-bottom: 5px
+                            padding-left: 20px
+                        input
+                            border: 1px solid $color-paragraph
+                            padding: 14px 20px
+                            +border-radius(50px)
+            button.save
+                width: 100%
+                padding: 10px 0
+                background-color: $white
+                color: $red
+                text-transform: uppercase
+                border-radius: 50px
+                font-size: 14px
+                font-weight: 600
+                border: 1px solid $white
+                +transition(0.3s)
+                margin-top: 30px
+                margin-bottom: 30px
+                &:hover
+                    background-color: transparent
+                    color: $white
+
+.home-login
+    position: relative
+    .main-wapper
+        .login-form
+            position: relative
+            .login-wapper.search-result-main
+                height: 80vh
+                overflow-y: scroll
+                overflow-x: hidden
+                padding: 0 30px
+                width: 70%
+                h2
+                    text-align: start
+                .manin-wapper
+                    .heading
+                        display: flex
+                        align-items: center
+                        justify-content: space-between
+                    .text
+                        text-align: start
+                        .fst-sec
+                            border-bottom: 1px solid $white
+                            padding-bottom: 30px
+                            margin-bottom: 30px
+                            h6
+                                font-size: 14px
+                                font-weight: 600
+                                color: $white
+                                margin-bottom: 10px
+                            p
+                                font-size: 14px
+                                font-weight: 600
+                                color: $color-paragraph
+                                line-height: 19px
+                            ul
+                                display: flex
+                                align-items: center
+                                margin-top: 20px
+                                font-size: 14px
+                                font-weight: 600
+                                color: $color-paragraph
+                                flex-wrap: wrap
+                                li
+                                    display: flex
+                                    align-items: center
+                                    gap: 10px
+                                    margin-right: 20px
+                                    margin-bottom: 0
+                            &:last-child
+                                border-bottom: 0
+            .sec-footer
+                background-color: $blue
+                padding: 15px 0
+                position: absolute
+                bottom: 0
+                width: 100%
+                p
+                    color: $red
+                    font-size: 14px
+                    font-weight: 600
+                    margin-left: 240px
+                    a
+                        color: $blue-shade
+    .fst-footer
+        background-color: $blue
+        padding: 15px 0
+        position: absolute
+        bottom: 0
+        width: 100%
+        p
+            color: $red
+            font-size: 14px
+            font-weight: 600
+            margin-left: 240px
+            a
+                color: $blue-shade
+
+.form-filter
+    background-color: rgba(75, 75, 75, 0.6)
+    .form-wapper
+        h2
+            font-size: 24px
+            font-weight: 700
+            color: $blue-light
+            margin-bottom: 20px
+        #search-filter-from
+            .filter-sub-wapper
+                border-bottom: 1px solid $red
+                padding-bottom: 30px
+                label.date-lable
+                    border: 1px solid $input-extra
+                    width: 100%
+                    position: relative
+                    padding: 10px 20px
+                    border-radius: 24px
+                    margin-bottom: 20px
+                    input
+                        background-color: transparent
+                        outline: 0
+                        border: 0
+                        font-size: 14px
+                        color: $red
+                        &::placeholder
+                            font-size: 14px
+                            font-weight: 600
+                            text-transform: uppercase
+                            color: $input-text
+                    &::after
+                        content: ""
+                        position: absolute
+                        width: 18px
+                        height: 16px
+                        background-image: url(../images/Icon-Calendar-bl.svg)
+                        background-repeat: no-repeat
+                        right: 20px
+                        top: 50%
+                        +transform(translateY(-50%))
+                label.location-lable
+                    border: 1px solid $input-extra
+                    width: 100%
+                    position: relative
+                    padding: 10px 20px
+                    border-radius: 24px
+                    margin-bottom: 20px
+                    input
+                        background-color: transparent
+                        outline: 0
+                        border: 0
+                        font-size: 14px
+                        color: $red
+                        &::placeholder
+                            font-size: 14px
+                            font-weight: 600
+                            text-transform: uppercase
+                            color: $input-text
+                    &::after
+                        content: ""
+                        position: absolute
+                        width: 15px
+                        height: 18px
+                        background-image: url(../images/Icon-Location-bl.svg)
+                        background-repeat: no-repeat
+                        right: 20px
+                        top: 50%
+                        +transform(translateY(-50%))
+                label.salary-lable
+                    border: 1px solid $input-extra
+                    width: 100%
+                    position: relative
+                    padding: 10px 20px
+                    border-radius: 24px
+                    margin-bottom: 20px
+                    .form-select
+                        border: 0
+                        padding: 5px 0.25rem 5px 0
+                        font-size: 14px
+                        font-weight: 600
+                        text-transform: uppercase
+                        color: $input-text
+                        background-image: none
+                        position: relative
+                        option
+                            padding: 5px
+                            font-size: 14px
+                            font-weight: 600
+                        &:focus
+                            box-shadow: none
+                    &::after
+                        content: ""
+                        position: absolute
+                        background-image: url(../images/Icon-Dropdown-bl.svg)
+                        width: 18px
+                        height: 20px
+                        background-repeat: no-repeat
+                        right: 20px
+                        top: 16px
+            .button-holder
+                margin-top: 30px
+                button
+                    width: 100%
+                    background-color: $white
+                    color: $red
+                    font-size: 14px
+                    font-weight: 600
+                    border: 1px solid $red
+                    padding: 10px 0
+                    border-radius: 24px
+                    margin-bottom: 10px
+                    text-transform: uppercase
+                    transition: 0.3s
+                    &.active
+                        background-color: $red
+                        color: $white
+                    &:hover
+                        background-color: $red
+                        color: $white
+
+.fst-footer-new
+    background-color: $blue
+    padding: 15px 0
+    &.domocrat-class
+        background-color: $red
+        a
+            color: $white
+    &.republican-class
+        background-color: $blue
+        a
+            color: $white
+    &.footer-for-new-bg
+        background-color: $white
+        border: 1px solid $home-page-border
+        a
+            color: $red
+            +transition(0.3s)
+            &:hover
+                color: $blue
+    .footer-wapper
+        p
+            font-size: 14px
+            font-weight: 500
+    a
+        color: $red
+        +transition(0.3s)
+        &:hover
+            color: $white
+
+
+.sing-out-screen-op
+    display: flex
+    align-items: center
+    gap: 10px
+    justify-content: end
+    .name
+        display: inline-block
+        color: $input-text
+        font-size: 14px
+        font-weight: 600
+    .profile-photo
+        width: 50px
+        height: 50px
+        border-radius: 100%
+        border: 1px solid $input-text
+        figure
+            width: 100%
+            height: 100%
+            background-size: 100%
+            background-repeat: no-repeat
+            background-position: center
+            +border-radius(50%)
+            overflow: hidden
+            background-size: cover
+            &.no_img
+                background-size: auto
+    .sing-out
+        a
+            background-color: $blue-shade
+            display: inline-block
+            color: $white
+            font-size: 14px
+            font-weight: 600
+            text-transform: uppercase
+            padding: 12px 18px
+            border-radius: 26px
+            border: 1px solid $blue-shade
+            +transition(0.3s)
+            &:hover
+                background-color: transparent
+                color: $blue-shade
+
+.wapper-form
+    position: relative
+    .error-message
+        position: absolute
+        left: 20px
+        color: $white
+        bottom: 8px
+        font-size: 12px
+    &.checkbox
+        padding-bottom: 28px
+
+.form-holder
+    .holder-input
+        position: relative
+        .error-message
+            position: absolute
+            left: 20px
+            color: $white
+            bottom: -23px
+            font-size: 12px
+
+textarea
+    width: 100%
+    height: 150px
+    resize: none
+    background-color: transparent
+    outline: 0
+    border: 0
+    font-size: 14px
+    color: $white
+    border: 1px solid $border-color
+    padding: 15px 20px
+    border-radius: 24px
+    &::placeholder
+        color: $border-color
+// job-dtl
+.home-login
+    .main-wapper
+        .login-form
+            .login-wapper
+                .job-dtl
+                    ul
+                        li
+                            margin-bottom: 10px
+.text-extra
+    // padding-top: 60px
+    text-align: start
+    h6
+        color: $white
+        font-size: 20px
+    h3
+        font-size: 20px
+    p
+        font-size: 14px
+        color: $color-paragraph
+        font-family: $font_Poppins
+        font-weight: 600
+    ul
+        font-size: 14px
+        font-weight: 600
+        color: $color-paragraph
+        font-family: $font_Poppins
+        display: flex
+        align-items: center
+        flex-wrap: wrap
+        column-gap: 20px
+        margin-top: 30px
+        li
+            display: flex
+            align-items: center
+            column-gap: 10px
+            margin-bottom: 10px
+            a
+                color: $color-paragraph
+                font-family: $font_Poppins
+                font-size: 14px
+                font-weight: 600
+                border: 0
+                background-color: transparent
+    .main-wapper_one
+        margin-top: 30px
+        padding-bottom: 30px
+        border-bottom: 1px solid $border-color
+    .main-wapper_two
+        margin-top: 30px
+        padding-bottom: 30px
+        border-bottom: 1px solid $border-color
+        ul
+            margin-top: 5px
+            list-style: disc
+            display: inline-block
+            margin-bottom: 10px
+            li
+                position: relative
+                padding-left: 18px
+                &::after
+                    content: ""
+                    position: absolute
+                    width: 8px
+                    height: 8px
+                    background-color: $color-paragraph
+                    left: 0
+                    top: 11px
+                    border-radius: 100%
+    .main-wapper_last
+        padding-top: 30px
+        text-align: center
+        .a_btn
+            display: inline-block
+            padding: 16px 140px
+            margin-bottom: 30px
+            border-radius: 30px
+            color: $red
+            font-family: $font_Poppins
+            font-size: 14px
+            font-weight: 600
+            line-height: 1
+            border: 1px solid $white
+            +transition(0.3s)
+            &:hover
+                background-color: transparent
+                color: $white
+    .fst-sec
+        border-bottom: 1px solid $white
+        padding-bottom: 30px
+        margin-bottom: 30px
+        &:last-child
+            border-bottom: 0
+.home-login
+    .main-wapper
+        .login-form
+            .login-wapper
+                .text-extra
+                    ul
+                        li
+                            a
+                                color: $color-paragraph
+                                font-family: $font_Poppins
+                                font-size: 14px
+                                font-weight: 600
+                                border: 0
+                                background-color: transparent
+                                +transition(0.3s)
+                                &:hover
+                                    color: $white
+                    .edit_delete
+                        flex: 0 0 100%
+                        a
+                            display: inline-block
+                            background-color: $white
+                            color: $red
+                            padding: 8px 35px
+                            border: 1px solid $white
+                            +transition(0.3s)
+                            &:hover
+                                background-color: transparent
+                                color: $white
+
+// job-dtl
+.home-login
+    .main-wapper
+        .login-form
+            .login-wapper
+                .job-dtl
+                    ul
+                        li
+                            margin-bottom: 10px
+.job-dtl
+    // padding-top: 60px
+    text-align: start
+    h3
+        font-size: 20px
+    p
+        font-size: 14px
+        color: $color-paragraph
+        font-family: $font_Poppins
+        font-weight: 600
+    ul
+        font-size: 14px
+        font-weight: 600
+        color: $color-paragraph
+        font-family: $font_Poppins
+        display: flex
+        align-items: center
+        flex-wrap: wrap
+        column-gap: 20px
+        margin-top: 30px
+        li
+            display: flex
+            align-items: center
+            column-gap: 10px
+            margin-bottom: 10px
+    .main-wapper_extra
+        margin-top: 30px
+        padding-bottom: 30px
+        border-bottom: 1px solid $border-color
+        &:last-child
+            padding-bottom: 0
+            border: 0
+        ul
+            margin-top: 20px
+            list-style: disc
+            display: flex
+            align-items: center
+            flex-wrap: wrap
+            gap: 10px
+            margin-bottom: 10px
+            li
+                position: relative
+                padding-left: 18px
+                &::after
+                    content: ""
+                    position: absolute
+                    width: 8px
+                    height: 8px
+                    background-color: $color-paragraph
+                    left: 0
+                    top: 7px
+                    border-radius: 100%
+            span
+                display: none
+    // .main-wapper_two
+    //     margin-top: 30px
+    //     padding-bottom: 30px
+    //     border-bottom: 1px solid $border-color
+    .main-wapper_last
+        padding-top: 30px
+        text-align: center
+        .sing-up-submit-in
+            background-color: $white
+            display: inline-block
+            padding: 16px 140px
+            margin-bottom: 30px
+            border-radius: 30px
+            color: $red
+            font-family: $font_Poppins
+            font-size: 14px
+            font-weight: 600
+            line-height: 1
+            border: 1px solid $white
+            +transition(0.3s)
+            &:hover
+                background-color: transparent
+                color: $white
+.nonparty-class
+    .profile-main-wapper
+        font-family: $font_Poppins
+        .profile-label
+            color: $grey
+        .profile-dtl
+            color: $blue
+        p
+            color: $grey
+            font-size: 15px
+            line-height: 22px
+    .question-area-wapper
+        p
+            color: $grey
+            font-size: 15px
+            line-height: 22px
+    .job-dtl 
+        .main-wapper_last 
+            .sing-up-submit-in
+                border-color: $border-color
+                &:hover
+                    color: $blue
+    .form-holder 
+        .holder-input 
+            .error-message
+                color: $red
+    .star-profile
+        color: $red
+    .text-extra 
+        h6
+            color: $red
+        ul
+            color: $grey
+        p
+            color: $blue
+.home-login 
+    .main-wapper 
+        .nonparty-class
+            .login-wapper
+                &.scrool-extra 
+                    #sing-up-form 
+                        .wapper-form 
+                            #name-label 
+                                #name
+                                    color: $grey
+                        #text-area 
+                            textarea
+                                color: $grey
+                        #sing-up-submit
+                            border-color: $grey
+                            &:hover
+                                color: $blue
+                        .wapper-form 
+                            select
+                                color: $input-text
+                                outline: 0
+                    .form-check-label
+                        color: $grey
+                #password-form 
+                    .email-label-new
+                        color: $blue-shade
+                    button.submit
+                        border: 1px solid $grey
+                        &:hover
+                            color: $blue
+                .text-white
+                    color: $input-text !important
+                    font-weight: 600
+                    font-size: 14px
+                .text-extra 
+                    .edit_delete 
+                        a
+                            border-color: $border-color
+                            &:hover
+                                color: $blue
+            .form-element 
+                .form-holder
+                    &.default_form 
+                        .holder-input
+                            label
+                                color: $grey
+                            input
+                                color: $blue-shade
+                                border-color: $grey
+                button.save
+                    border-color: $grey
+                    &:hover
+                        color: $blue
+            .party-main-select
+                label
+                    display: block
+                    width: 100%
+                    text-align: left
+                    font-size: 14px
+                    color: $grey
+                    font-weight: 600
+                    text-transform: uppercase
+                    margin-bottom: 12px
+                select
+                    width: 100%
+                    border: 1px solid $grey
+                    padding: 14px 20px
+                    border-radius: 30px
+                    color: $blue-shade
+                    outline: 0
+.domocrat-class
+    .profile-main-wapper
+        font-family: $font_Poppins
+        .profile-label
+            color: $white
+        .profile-dtl
+            color: $white
+        p
+            color: $white
+            font-size: 22px
+            line-height: 1
+            margin-bottom: 15px
+    .question-area-wapper
+        p
+            color: $white
+            font-size: 15px
+            line-height: 22px
+    .party-main-select
+        label
+            display: block
+            width: 100%
+            text-align: left
+            font-size: 14px
+            color: $white
+            font-weight: 600
+            text-transform: uppercase
+            margin-bottom: 12px
+        select
+            width: 100%
+            border: 1px solid $white
+            padding: 14px 20px
+            border-radius: 30px
+            color: $white
+            outline: 0
+            background-color: transparent
+.republican-class
+    .profile-main-wapper
+        font-family: $font_Poppins
+        .profile-label
+            color: $white
+        .profile-dtl
+            color: $white
+        p
+            color: $white
+            font-size: 22px
+            line-height: 1
+            margin-bottom: 15px
+    .question-area-wapper
+        p
+            color: $white
+            font-size: 15px
+            line-height: 22px
+    .party-main-select
+        label
+            display: block
+            width: 100%
+            text-align: left
+            font-size: 14px
+            color: $white
+            font-weight: 600
+            text-transform: uppercase
+            margin-bottom: 12px
+        select
+            width: 100%
+            border: 1px solid $white
+            padding: 14px 20px
+            border-radius: 30px
+            color: $white
+            outline: 0
+            background-color: transparent
+.home-login 
+    .main-wapper 
+        .login-form 
+            &.nonparty-class
+                .login-wapper
+                    &.search-result-main
+                        .profile-label
+                            color: $blue-shade
+                        .profile-dtl
+                            color: $red
+                        p
+                            color: $grey
+                            font-size: 22px
+                            line-height: 1
+                            margin-bottom: 15px
+                        .yes-no
+                            color: $grey    
+                        .job_description-extra
+                            color: $grey
+                        .ammount-class
+                            color: $grey
+                        .edit-and-delete
+                            flex:  0 0 100%
+                            margin-top: 10px
+                            a
+                                border: 1px solid $grey
+                                &:hover
+                                    color: $blue
+.home-login 
+    .main-wapper 
+        .login-form 
+            &.nonparty-class
+                .search-result-main
+                    .profile-label
+                        color: $blue-shade
+                    .profile-dtl
+                        color: $red
+                    p
+                        color: $grey
+                        font-size: 22px
+                        line-height: 1
+                        margin-bottom: 15px
+                    .yes-no
+                        color: $grey    
+                    .job_description-extra
+                        color: $grey
+                    .ammount-class
+                        color: $grey
+                    hr
+                        color: $input-extra
+                .login-wapper.question-area-main 
+                    #question-form 
+                        .question-area-wapper 
+                            textarea
+                                color: $blue-light
+                            label
+                                color: $black
+                        .finish
+                            &:hover
+                                background-color: transparent
+                                color: $blue
+    .extra-margin
+        margin-top: 20px
+        display: inline-block
+.modal 
+    background-color: rgb(0 0 0 / 66%)
+.modal-content
+    border-radius: 24px
+    .normal-wapper
+        margin-top: 40px
+    h4
+        font-size: 20px
+        font-weight: 600
+        color: $blue
+    .modal-body
+        padding: 25px
+        position: relative
+    label
+        color: rgb(75 75 75 / 60%)
+        font-size: 14px
+        font-weight: 700
+    textarea
+        color: $blue-shade
+        padding: 12px 20px
+        height: 120px
+        &:focus
+            border-color: $red
+    .form-group
+    .for-select-box
+        position: relative
+        &::after
+            content: ""
+            position: absolute
+            width: 9px
+            height: 16px
+            background-size: 100%
+            background-image: url(../images/icon-down.png)
+            background-repeat: no-repeat
+            right: 22px
+            bottom: 17px
+    .form-control
+        font-size: 14px
+        color: $blue
+        border-radius: 30px
+        padding: 12px 30px
+        &:focus
+            box-shadow: none
+            border-color: $red
+    .modal-title
+        font-size: 18px
+        font-weight: 600
+        color: $red
+    .modal-button
+        display: flex
+        align-items: center
+        gap: 10px
+        margin: 40px 0 0 0
+        .btn
+            background-color: $blue
+            border-radius: 30px !important
+            color: $white
+            border-color: $blue
+            // width: 50%
+            padding: 14px
+            &:hover
+                background-color: transparent
+                color: $blue
+            &.cancel
+                background-color: $red
+                border-color: $red
+                &:hover
+                    color: $red
+                    border-color: $red
+                    background-color: transparent
+.cropper-container
+    max-height: 430px
+.extra-logo-wapper
+    text-align: center
+    padding: 60px 0
+    .logo-main
+        display: inline-block
+        width: 480px
+        height: 262px
+        text-align: center
+        margin-bottom: 50px
+        img
+            display: block
+            width: 100%
+            height: auto
+    p
+        font-size: 24px
+        line-height: 36px
+        width: 90%
+        margin: 0 auto
+        color: $black
+.add-section-top
+    position: absolute
+    top: 50%
+    left: 50%
+    +transform(translate(-50% , -50%))
+    display: none
+    .fig-holder
+        width: 500px
+        height: 110px
+        border: 1px solid $border-color
+        figure
+            width: 100%
+            height: 100%
+            background-size: cover
+            background-repeat: no-repeat
+            background-position: center

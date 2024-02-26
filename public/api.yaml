@@ -1,0 +1,1663 @@
+swagger: "2.0"
+info:
+  description: Campaign Express project rest api for mobile app
+  version: 1.0.0
+  title: Campaign Express Mobile API
+basePath: /api/
+
+servers:
+  - url: http://campaign-app.test
+    description: Local dev server
+
+paths:
+  # User Login
+  /auth/sign-in:
+    post:
+      tags:
+        - Authentication
+      summary: User Login
+      description: Registered user login
+      operationId: user_login
+      parameters:
+        - in: body
+          name: Login Request Body
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                required: true
+              password:
+                type: string
+                required: true
+              role:
+                type: string
+                required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "422":
+          description: Unprocessable Entity
+
+  # User Register Route
+  /auth/sign-up:
+    post:
+      tags:
+        - Authentication
+      summary: New User Registration
+      description: Create a new user account and signs him/her in
+      operationId: user_register
+      parameters:
+        - in: body
+          name: New Registration Request Body
+          schema:
+            type: object
+            properties:
+              first_name:
+                type: string
+                required: true
+              last_name:
+                type: string
+                required: true
+              email:
+                type: string
+                required: true
+              role:
+                type: string
+                enum: [applicant, campaign]
+                required: true
+              political_group:
+                type: string
+                enum: [democrat, republican, "Nonpartisan"]
+                required: true
+              phone_no:
+                type: integer
+                required: true
+              password:
+                type: string
+                required: true
+              password_confirmation:
+                type: string
+                required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "422":
+          description: Unprocessable Entity
+
+  # User signout route
+  /auth/sign-out:
+    post:
+      tags:
+        - Authentication
+      summary: User log out
+      description: User sign out. Authentication is required.
+      operationId: user_logout
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "401":
+          description: Unauthorized
+
+  # User social login route
+  /auth/social-login:
+    post:
+      tags:
+        - Authentication
+      summary: User Social Login
+      description: User Authentication using various social media services (facebook, google, apple)
+      operationId: user_social_login
+      parameters:
+        - in: body
+          name: Social Login Request Body
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                required: true
+              name:
+                type: string
+                required: true
+              social_id:
+                type: string
+                required: true
+              service:
+                type: string
+                enum: [facebook, google, apple]
+                required: true
+              role:
+                type: string
+                enum: [applicant, campaign]
+                required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "422":
+          description: Unprocessable Entity
+
+
+  # user passord update 
+  /my-account/profile/password-update:
+    post:
+      tags:
+        - User Profile
+      summary: User Password Update
+      description: Updation the password of an user. Authetication Needed.
+      operationId: user_password_update
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: Password Reset Fields
+          schema:
+            type: object
+            properties:
+              old_password:
+                type: string
+                required: true
+              new_password:
+                type: string
+                required: true
+              new_password_confirmation:
+                type: string
+                required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Applicant User profile route
+  /my-account/profile:
+    get:
+      tags:
+        - Applicant Profile
+      summary: Applicant Profile View
+      description: Retrieving the profile of an applicant. Authetication Needed.
+      operationId: applicant_profile_show
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Applicant User profile update route
+  /my-account/profile/update:
+    post:
+      tags:
+        - Applicant Profile
+      summary: Applicant Profile Update
+      description: Updation the profile of an applicant. Authetication Needed.
+      operationId: applicant_profile_update
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: formData
+          name: name
+          type: string
+          required: true
+
+        - in: formData
+          name: email
+          type: string
+          required: true
+
+        - in: formData
+          name: phone_no
+          type: string
+          required: true
+
+        - in: formData
+          name: street_address
+          type: string
+          required: true
+
+        - in: formData
+          name: city
+          type: string
+          required: true
+
+        - in: formData
+          name: state
+          type: string
+          required: true
+
+        - in: formData
+          name: zip_code
+          type: string
+          required: true
+
+        - in: formData
+          name: profile_pic
+          type: file
+          required: false
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Applicant resume fetch
+  /my-account/profile/resume:
+    get:
+      tags:
+        - Applicant Upload Resume
+      summary: Applicant resume details get
+      description: Retrieving the resume file details of an applicant. Authetication Needed.
+      operationId: applicant_resume_details
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Applicant resume save and update
+  /my-account/profile/resume/store:
+    post:
+      tags:
+        - Applicant Upload Resume
+      summary: Applicant resume details create/update
+      description: Creation/Updation of the resume file details of an applicant. Authetication Needed.
+      operationId: applicant_resume_save_update
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: formData
+          name: file
+          type: file
+          required: true
+
+        - in: formData
+          name: upload_id
+          type: integer
+          required: false
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Applicant Manual Resume: Work Experience
+  /my-account/profile/resume/work-experience:
+    get:
+      tags:
+        - Applicant Manual Resume | Work Experience
+      summary: Applicant manual resume. Get all work experience
+      description: Get the list of work experiences of an applicant user
+      operationId: applicant_work_experience
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+
+  # Applicant Manual Resume: Save Work Experience
+  /my-account/profile/resume/work-experience/store:
+    post:
+      tags:
+        - Applicant Manual Resume | Work Experience
+      summary: Applicant manual resume. Create/update new work experience
+      description: Creation and updation of work experience by an applicant user
+      operationId: applicant_work_experience_create
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: Applicant work experience request body
+          schema:
+            type: object
+            properties:
+              exp_id:
+                type: integer
+                required: false
+                default: null
+              title:
+                type: string
+                required: true
+              companyName:
+                type: string
+                required: true
+              startDate:
+                type: string
+                required: true
+                format: date
+              endDate:
+                type: string
+                required: false
+                format: date
+              description:
+                type: string
+                required: true
+              isCurrentlyWorking:
+                type: boolean
+                required: true
+                default: false
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Applicant Manual Resume: Work Experience Remove
+  /my-account/profile/resume/work-experience/{exp_id}/delete:
+    delete:
+      tags:
+        - Applicant Manual Resume | Work Experience
+      summary: Applicant manual resume. Delete a work experience
+      description: Deletion/Removal of work experience item by an applicant user
+      operationId: applicant_work_delete
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: exp_id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+
+  # Applicant Manual Resume: Educational Qualifications
+  /my-account/profile/resume/edu-qualification:
+    get:
+      tags:
+        - Applicant Manual Resume | Educational Qualification
+      summary: Applicant manual resume. Listing of all Educational Qualification items
+      description: Get the list of Educational Qualification Items of an applicant user
+      operationId: educational_qualifications_listings
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+
+  # Applicant Manual Resume: Save educational Qualification
+  /my-account/profile/resume/edu-qualification/store:
+    post:
+      tags:
+        - Applicant Manual Resume | Educational Qualification
+      summary: Applicant manual resume. Create/Update new educational qualification
+      description: Creation and updation of educational qualification by an applicant user
+      operationId: applicant_qualification_create
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: Applicant educational qualification request body
+          schema:
+            type: object
+            properties:
+              q_id:
+                type: integer
+                required: false
+                default: null
+              institute_name:
+                type: string
+                required: true
+              degree:
+                type: string
+                required: true
+              start_year:
+                type: string
+                required: true
+              end_year:
+                type: string
+                required: false
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+
+  # Applicant Manual Resume: Delete educational Qualification
+  /my-account/profile/resume/edu-qualification/{q_id}/delete:
+    delete:
+      tags:
+        - Applicant Manual Resume | Educational Qualification
+      summary: Applicant manual resume. Delete a educational qualification
+      description: Deletion/Removal of educational qualification item by an applicant user
+      operationId: applicant_qualification_delete
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: q_id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden request
+        "5XX":
+          description: Internal Server Error
+
+  # Applicant Manual Resume: All Applicant Publication
+  /my-account/profile/resume/publication:
+    get:
+      tags:
+        - Applicant Manual Resume | Publication
+      summary: Applicant manual resume. Get all Applicant Publication
+      description: Retrieving all the Applicant Publication items of an applicant user
+      operationId: applicant_publication
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden request
+        "5XX":
+          description: Internal Server Error
+
+  # Applicant Manual Resume: Save Applicant Publication
+  /my-account/profile/resume/publication/store:
+    post:
+      tags:
+        - Applicant Manual Resume | Publication
+      summary: Applicant manual resume. Creating/Updating Applicant Publication
+      description: Creation as well as updation of the Applicant Publication item of an applicant user
+      operationId: applicant_publication_save
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: Applicant Publication request body
+          schema:
+            type: object
+            properties:
+              pub_id:
+                type: integer
+                required: false
+                default: null
+              title:
+                type: string
+                required: true
+              publisher:
+                type: string
+                required: true
+              summary:
+                type: string
+                required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden request
+        "5XX":
+          description: Internal Server Error
+
+  # Applicant Manual Resume: Work Experience Remove
+  /my-account/profile/resume/publication/{pub_id}/delete:
+    delete:
+      tags:
+        - Applicant Manual Resume | Publication
+      summary: Applicant manual resume. Delete a work publication item
+      description: Deletion/Removal of publication item by an applicant user
+      operationId: applicant_publication_delete
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: pub_id
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+
+  # Applicant Manual Resume: List of Links
+  /my-account/profile/resume/links:
+    get:
+      tags:
+        - Applicant Manual Resume | Links
+      summary: Applicant manual resume. List of links
+      description: Listing of links added by an applicant (Authentication is needed)
+      operationId: list_of_links
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Applicant Manual Resume: Create/Edit Link
+  /my-account/profile/resume/links/store:
+    post:
+      tags:
+        - Applicant Manual Resume | Links
+      summary: Applicant manual resume. Add or Edit Link
+      description: Ability of an applicant user to add new link or edit an existing link. (Authentication is needed)
+      operationId: add_edit_link
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: Applicant link request body
+          schema:
+            type: object
+            properties:
+              link_id:
+                type: integer
+                required: false
+                default: null
+              link_title:
+                type: string
+                required: true
+              link_url:
+                type: string
+                required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Applicant Manual Resume: Award / Certification
+  /my-account/profile/resume/cert-award:
+    get:
+      tags:
+        - Applicant Manual Resume | Award / certification
+      summary: Applicant manual resume. Get all Applicant certifications or award
+      description: Retrieving all the Applicant certification or award items based on provided query parameter
+      operationId: applicant_cert_award
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: query
+          name: type
+          enum: ["certification", "award"]
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden request
+        "5XX":
+          description: Internal Server Error
+
+  # Applicant Manual Resume: Award / Certification
+  /my-account/profile/resume/cert-award/store:
+    post:
+      tags:
+        - Applicant Manual Resume | Award / certification
+      summary: Applicant manual resume. Create & Update existing Applicant certifications or award
+      description: Creation of new or updation of existing Applicant certifications or award item
+      operationId: applicant_cert_award_store
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: Applicant Award/certification request body
+          schema:
+            type: object
+            properties:
+              cert_id:
+                type: integer
+                required: false
+                default: null
+              certificate:
+                type: string
+                required: true
+              award_org:
+                type: string
+                required: true
+              summary:
+                type: string
+                required: true
+              start_year:
+                type: integer
+                required: true
+              type:
+                enum: ["certification", "award"]
+                required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden request
+        "5XX":
+          description: Internal Server Error
+
+  # Applicant Manual Resume: Award / Certification
+  /my-account/profile/resume/cert-award/{certification}/delete:
+    delete:
+      tags:
+        - Applicant Manual Resume | Award / certification
+      summary: Applicant manual resume. Deletion of an Applicant's certification or award
+      description: Removal of Applicant's certification or award item
+      operationId: applicant_cert_award_delete
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: certification
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden request
+        "5XX":
+          description: Internal Server Error
+
+  # Jobs Listings
+  /my-account/employments:
+    get:
+      tags:
+        - Applicant Jobs
+      summary: All job listings.
+      description: Listing of all jobs created by campaign user. (Authentication is required).
+      operationId: all_job_listings
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: Applicant link request body
+          schema:
+            type: object
+            properties:
+              location_type:
+                type: string
+                required: false
+                default: null
+              job_title:
+                type: string
+                required: false
+                default: null
+
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Job Single
+  /my-account/employments/{id}:
+    get:
+      tags:
+        - Applicant Jobs
+      summary: Single Job Item.
+      description: Single Job Data. (Authentication is required).
+      operationId: job_single
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: id
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Job Apply
+  /my-account/employments/{id}/apply:
+    post:
+      tags:
+        - Applicant Jobs
+      summary: Applying a job
+      description: Applying to a job by a user with applicant role. (Authentication is required). Please note applying twice is prohibited.
+      operationId: job_apply
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: id
+          type: integer
+          required: true
+
+        - in: formData
+          name: name
+          type: string
+          required: true
+
+        - in: formData
+          name: email
+          type: string
+          required: true
+
+        - in: formData
+          name: phone_no
+          type: string
+          required: true
+
+        - in: formData
+          name: street_address
+          type: string
+          required: true
+
+        - in: formData
+          name: resume_file
+          type: file
+          required: false
+          description: PDF, DOCX and TXT files are allowed
+
+        - in: formData
+          name: answer0
+          type: text
+          required: true
+          description: Please discuss this with me in case
+
+        - in: formData
+          name: answer1
+          type: text
+          required: true
+          description: Please discuss this with me in case
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Job Applications by an applicant
+  /my-account/employments/applied/jobs:
+    get:
+      tags:
+        - Applicant Jobs
+      summary: Applicant's Job Applications
+      description: List of job posting where an applicant has applied. Authetication Needed.
+      operationId: job_applied
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+
+  # saved job list
+  /my-account/employments/saved/jobs:
+    post:
+      tags:
+        - Applicant Jobs
+      summary: Saved job list
+      description: List of all saved jobs (Authentication is required).
+      operationId: save_jobs_list
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: query
+          name: location_type
+          type: string
+          description: search result by location [office, remote]
+
+        - in: query
+          name: job_title
+          type: string
+          description: search result by job title
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+
+  # save job
+  /my-account/employments/{id}/save:
+    post:
+      tags:
+        - Applicant Jobs
+      summary: Save a job
+      description: Save job for later (Authentication is required).
+      operationId: save_single_job
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: id
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Campaign Profile View
+  /my-account/campaign/profile:
+    get:
+      tags:
+        - Campaign Profile
+      summary: Campaign Profile View
+      description: Retrieving the profile of a Campaign. Authetication Needed.
+      operationId: campaign_profile_show
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Campaign Profile Create Or Update
+  /my-account/campaign/profile/store:
+    post:
+      tags:
+        - Campaign Profile
+      summary: Add or Edit Campaign Profile
+      description: Ability of a user (Campaign Role) to add or update their profile. Authetication Needed.
+      operationId: campaign_profile_create_update
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: formData
+          name: company_name
+          type: string
+          required: true
+
+        - in: formData
+          name: company_email
+          type: string
+          required: true
+
+        - in: formData
+          name: contact_person
+          type: string
+          required: true
+
+        - in: formData
+          name: street_address
+          type: string
+          required: true
+
+        - in: formData
+          name: city
+          type: string
+          required: true
+
+        - in: formData
+          name: state
+          type: string
+          required: true
+
+        - in: formData
+          name: zip_code
+          type: integer
+          required: true
+
+        - in: formData
+          name: profile_id
+          type: integer
+          required: false
+
+        - in: formData
+          name: political_group
+          type: string
+          enum: ["democrat", "republican", "nonpartisan"]
+          required: true
+
+        - in: formData
+          name: company_logo
+          type: file
+          required: false
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Campaign Jobs
+  /my-account/campaign/jobs:
+    get:
+      tags:
+        - Campaign Jobs
+      summary: Jobs by a campaign user
+      description: List of jobs posted by a specific campaign user. Authetication Needed.
+      operationId: campaign_job_list
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Campaign Jobs: Predefined options
+  /my-account/campaign/jobs/infos:
+    get:
+      tags:
+        - Campaign Jobs
+      summary: Pre-defined job data
+      description: Some predefined data provided for creation of a job post. Authetication Needed.
+      operationId: campaign_job_infos
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Create new job title
+  /my-account/campaign/jobs/store-title:
+    post:
+      tags:
+        - Campaign Jobs
+      summary: Create new job title
+      description: Creation of a new job title. (Authentication is required).
+      operationId: campaign_job_create_title
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: job create update params
+          schema:
+            type: object
+            properties:
+              industry_id:
+                type: integer
+                required: false
+              position:
+                type: string
+                required: true
+                default:
+              description:
+                type: string
+                required: true
+                default:
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Campaign Jobs: Create & Edit
+  /my-account/campaign/jobs/store:
+    post:
+      tags:
+        - Campaign Jobs
+      summary: Create and update job item.
+      description: Creation of a new job and updation of an existing job item. (job_id is required for update).
+      operationId: campaign_job_update_create
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: job create update params
+          schema:
+            type: object
+            properties:
+              job_id:
+                type: integer
+                required: false
+              job_title:
+                type: string
+                required: true
+                default:
+              location_type:
+                type: string
+                enum: [remote, office]
+                required: true
+                default:
+              job_position:
+                type: string
+                required: true
+                default:
+              job_description:
+                type: string
+                required: true
+                default:
+              job_type:
+                type: string
+                required: true
+                default:
+              job_schedule:
+                type: string
+                required: true
+                default:
+              no_of_people:
+                type: integer
+                required: true
+              min_salary:
+                type: string
+                required: true
+                default:
+              max_salary:
+                type: string
+                required: true
+                default:
+              pay_rate:
+                type: string
+                required: true
+                default:
+              can_call:
+                type: boolean
+                required: true
+                default: false
+              can_post_resume:
+                type: boolean
+                required: true
+                default: false
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Save Questions for jobs
+  /my-account/campaign/jobs/store-question:
+    post:
+      tags:
+        - Campaign Jobs
+      summary: Save Questions for job application.
+      description: Ability of a campaign user to create, edit and remove the questions set for jobs. Authetication Needed.
+      operationId: campaign_job_question_store
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: formData
+          name: question[0]
+          type: text
+          required: true
+
+        - in: formData
+          name: question[1]
+          type: text
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # Campaign Jobs: Delete
+  /my-account/campaign/jobs/{id}/delete:
+    delete:
+      tags:
+        - Campaign Jobs
+      summary: Deletion of a job item.
+      description: Deletion of an existing job item based on its id. (Authentication is required).
+      operationId: campaign_job_delete
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+        - in: path
+          name: id
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # all applicants for a particular campaign
+  /my-account/campaign/job-applicants:
+    get:
+      tags:
+        - Campaign Applicants List
+      summary: List of all applicants
+      description: Fetching all applicants based on a particular campaign.
+      operationId: applicants_list_all
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # applied jobs per user
+  /my-account/campaign/applied-jobs/{user_id}:
+    get:
+      tags:
+        - Campaign Applicants List
+      summary: List of all applied jobs for a user.
+      description: List of all applied jobs for a particular user.
+      operationId: applied_user_remove
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: user_id
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # all applicants for a particular job
+  /my-account/campaign/jobs/applied/{jobId}:
+    get:
+      tags:
+        - Campaign Applicants List
+      summary: List of all applicants based on a job
+      description: Fetching all applicants based on a particular job.
+      operationId: applicants_list_by_job
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: jobId
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # all resume based on a particular applied applicant
+  /my-account/campaign/jobs/applied/resume/{user_id}:
+    get:
+      tags:
+        - Campaign Applicants List
+      summary: List of all resume based on a particular applied applicant
+      description: Fetching all resume based on a particular applied applicant.
+      operationId: applied_resume_list
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: user_id
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # all questions with answers
+  /my-account/campaign/jobs/applied/answer/{applied_job_id}:
+    get:
+      tags:
+        - Campaign Applicants List
+      summary: List of all questions with answers
+      description: Fetching all questions with answers based on a particular applied job.
+      operationId: applied_question_answer_list
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: applied_job_id
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # all questions with answers
+  /my-account/campaign/jobs/applied/remove/{applied_job_id}:
+    delete:
+      tags:
+        - Campaign Applicants List
+      summary: Remove Applicant From List
+      description: Remove applicant based on a particular applied job.
+      operationId: applied_user_remove
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: applied_job_id
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
+  # message to applicant by campaign
+  /my-account/campaign/message/send:
+    post:
+      tags:
+        - Message to User
+      summary: Message to applicant by campaign
+      description: send message to campaign user. Authetication Needed.
+      operationId: message_to_applicant
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: Message Fields
+          schema:
+            type: object
+            properties:
+              applicant_id:
+                type: integer
+                required: true
+              msz_subject:
+                type: string
+                required: true
+              msz_body:
+                type: string
+                required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
