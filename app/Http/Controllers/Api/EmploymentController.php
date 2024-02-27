@@ -65,7 +65,6 @@ class EmploymentController extends Controller
 
     public function show($id)
     {
-        return $id;
         $employment = Employment::select([
             'employments.*',
             'company_profiles.company_name',
