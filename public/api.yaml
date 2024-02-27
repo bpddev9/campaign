@@ -1275,6 +1275,39 @@ paths:
         "422":
           description: Unprocessable Entity
 
+
+  # Campaign Job Single
+  /my-account/campaign/jobs/{id}:
+    get:
+      tags:
+        - Campaign Jobs
+      summary: Single Job Item.
+      description: Single Job Data. (Authentication is required).
+      operationId: campaign_job_single
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: path
+          name: id
+          type: integer
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "422":
+          description: Unprocessable Entity
+
   # Campaign Jobs: Predefined options
   /my-account/campaign/jobs/infos:
     get:
