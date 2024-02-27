@@ -34,6 +34,10 @@ class EmploymentResource extends JsonResource
                 $request->segment(4),
                 fn () => $this->job_description
             ),
+            'job_benefit' => $this->when(
+                $request->segment(4),
+                fn () => $this->job_benefit
+            ),
             'questions' => $this->when(
                 $request->segment(4) !== 'applied-jobs',
                 fn () => collect(json_decode($this->appl_quest))
