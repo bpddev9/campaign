@@ -91,7 +91,6 @@ class EmploymentController extends Controller
                 'user_id',
                 auth()->id()
             )->limit(1),
-
             'user_count' => EmploymentUser::select(
                 DB::raw("COUNT(user_id)")
             )->where(

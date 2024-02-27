@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -63,7 +64,10 @@ class EmploymentResource extends JsonResource
                 $request->segment(4) !== 'applied-jobs',
                 fn () => new UserResource($request->user())
             ),
-
+            'is_saved' => $this->when(
+                $request->segment(4),
+                fn () => DB::table('saved_jobs')->where('applicant_id', $request->user()->id)->where('job_id', $this->id)->count() ? true : false
+            )
         ];
     }
 
