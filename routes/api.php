@@ -130,7 +130,6 @@ Route::group(['middleware' => ['auth:sanctum', 'is.verified'], 'prefix' => 'my-a
             Route::post('/store', [JobsController::class, 'store']);
 
             Route::get('/questions/{job_id}', [JobsController::class, 'jobQuestions']);
-
             Route::post('/store-question', [JobsController::class, 'storeQuestion']);
 
             // campaign applicants list for a single job

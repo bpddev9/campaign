@@ -12,7 +12,12 @@ class SkillController extends Controller
     public function index(Request $request)
     {
         $skill = $request->user()->skill()->first();
-        return new SkillResource($skill);
+        if ($skill) {
+            return new SkillResource($skill);
+        }
+        return response()->json([
+            'msz' => 'No Skill found'
+        ]);
     }
 
     public function store(Request $request)
