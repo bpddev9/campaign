@@ -227,6 +227,7 @@ class JobsController extends Controller
     public function userResume($userid)
     {
         $user = User::find($userid);
+        $skill = $user->skill()->first();
 
         return response()->json([
             'data' => [
@@ -236,7 +237,7 @@ class JobsController extends Controller
                     'publications' => PublicationResource::collection($user->publications),
                     'certificates' => CertificationResource::collection($user->certificates),
                     'awards' => CertificationResource::collection($user->awards),
-                    'skills' => SkillResource::collection($user->skills),
+                    'skills' => $skill ? new SkillResource($skill) : null,
                 ],
                 'uploaded' => new ResumeResource($user->resume)
             ],
