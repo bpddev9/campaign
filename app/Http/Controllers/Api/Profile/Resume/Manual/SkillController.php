@@ -11,21 +11,20 @@ class SkillController extends Controller
 {
     public function index(Request $request)
     {
-        $skills = $request->user()->skills()->get();
-        return SkillResource::collection($skills);
+        $skill = $request->user()->skill()->first();
+        return new SkillResource($skill);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'skill_name' => ['required'],
-            'skill_id' => ['nullable', 'integer']
+            'skill_name' => ['required', 'array']
         ]);
 
-        $skill = $request->user()->skills()->updateOrCreate([
-            'id' => $request->input('skill_id')
+        $skill = $request->user()->skill()->updateOrCreate([
+            'user_id' => $request->user()->id
         ], [
-            'skill_name' => $request->skill_name
+            'skill_name' => json_encode($request->skill_name)
         ]);
 
         return new SkillResource($skill);

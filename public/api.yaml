@@ -656,6 +656,71 @@ paths:
         "403":
           description: Forbidden request
 
+  # Applicant Manual Resume: All Applicant skills
+  /my-account/profile/resume/skill:
+    get:
+      tags:
+        - Applicant Manual Resume | Skill
+      summary: Applicant manual resume. Get all Applicant skill
+      description: Retrieving all the Applicant Skill items of an applicant user
+      operationId: applicant_skill
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "404":
+          description: Not Found
+        "403":
+          description: Forbidden request
+        "5XX":
+          description: Internal Server Error
+
+  # Applicant Manual Resume: Save Applicant Skill
+  /my-account/profile/resume/skill/store:
+    post:
+      tags:
+        - Applicant Manual Resume | Skill
+      summary: Applicant manual resume. Creating/Updating Applicant Skill
+      description: Creation as well as updation of the Applicant Skill item of an applicant user
+      operationId: applicant_skill_save
+      parameters:
+        - in: header
+          name: Authorization
+          type: string
+          required: true
+
+        - in: body
+          name: skill_name is an array not string
+          schema:
+            type: object
+            properties:
+              skill_name:
+                type: string
+                required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Successful Operation
+        "400":
+          description: Bad request
+        "403":
+          description: Forbidden request
+        "404":
+          description: Not Found
+        "422":
+          description: Unprocessable Entity
+        "5XX":
+          description: Internal Server Error
+
   # Applicant Manual Resume: List of Links
   /my-account/profile/resume/links:
     get:
@@ -1319,6 +1384,10 @@ paths:
               job_description:
                 type: string
                 required: true
+                default:
+              job_benefit:
+                type: string
+                required: false
                 default:
               job_type:
                 type: string

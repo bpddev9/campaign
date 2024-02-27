@@ -91,7 +91,6 @@ Route::group(['middleware' => ['auth:sanctum', 'is.verified'], 'prefix' => 'my-a
                 Route::group(['prefix' => 'skill'], function () {
                     Route::get('/', [SkillController::class, 'index']);
                     Route::post('/store', [SkillController::class, 'store']);
-                    Route::delete('/{skill}/delete', [SkillController::class, 'destroy']);
                 });
 
                 // applicant links
