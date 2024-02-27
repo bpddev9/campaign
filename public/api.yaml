@@ -1010,7 +1010,7 @@ paths:
 
   # saved job list
   /my-account/employments/saved/jobs:
-    post:
+    get:
       tags:
         - Applicant Jobs
       summary: Saved job list
