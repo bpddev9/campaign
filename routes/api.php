@@ -128,6 +128,7 @@ Route::group(['middleware' => ['auth:sanctum', 'is.verified'], 'prefix' => 'my-a
             Route::get('/{id}', [JobsController::class, 'show']);
             Route::post('store-title', [JobsController::class, 'storeTitle']);
             Route::post('/store', [JobsController::class, 'store']);
+            Route::delete('/{id}/delete', [JobsController::class, 'destroy']);
 
             Route::get('/questions/{job_id}', [JobsController::class, 'jobQuestions']);
             Route::post('/store-question', [JobsController::class, 'storeQuestion']);
